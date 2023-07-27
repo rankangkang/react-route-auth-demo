@@ -1,7 +1,11 @@
 import { FC } from 'react'
 
 const NotFound: FC = () => {
-  return <h1>404了 NotFound</h1>
+  return (
+    <div>
+      <h1>{'>_< 页面走丢了...'}</h1>
+    </div>
+  )
 }
 
 export default NotFound

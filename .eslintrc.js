@@ -37,7 +37,7 @@ module.exports = {
     'default-case': 'error',
     'no-caller': 'error',
     'no-eval': 'error',
-    'comma-dangle': ['error', 'never'],
+    // 'comma-dangle': ['error', 'always-multiline'],
     'max-len': [
       'error',
       {

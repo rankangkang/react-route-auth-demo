@@ -17,14 +17,14 @@ const fetch = <R>(
     data?: any
     then?: any
     [key: string]: any
-  }
+  },
 ): Promise<R> => {
   /**
    * 1. 是否有自定义的header 或者其他从config传入的配置
    * 从这里进行完善
    */
   let headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
     //TODO 鉴权？
   }
 
@@ -39,7 +39,7 @@ const fetch = <R>(
     timeout: 10000,
     data,
     headers,
-    ...others
+    ...others,
   }
 
   // 3. 根据环境和传参决定baseurl

@@ -26,47 +26,47 @@ const prodConfig: Configuration = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: '[hash:base64]'
-              }
-            }
+                localIdentName: '[hash:base64]',
+              },
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 // 自动添加不同浏览器前缀 并处理新特性
-                plugins: ['postcss-preset-env']
-              }
-            }
+                plugins: ['postcss-preset-env'],
+              },
+            },
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
-      }
-    ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
     },
     minimize: true,
     minimizer: [
       // 压缩css
       new CssMinimizerPlugin(),
-      new TerserPlugin()
-    ]
+      new TerserPlugin(),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/[name].[contenthash].css'
-    })
-  ]
+      filename: './css/[name].[contenthash].css',
+    }),
+  ],
 }
 
 export default merge<Configuration>(commonConfig, prodConfig)

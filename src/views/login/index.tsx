@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
 import { Button } from 'antd'
-import { useAuth } from '@/utils/auth'
+import { useAuth } from '@/hooks/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Login: FC = () => {
@@ -18,8 +18,7 @@ const Login: FC = () => {
         onClick={() => {
           signIn()
           navigate(from)
-        }}
-      >
+        }}>
         登录
       </Button>
     </Fragment>

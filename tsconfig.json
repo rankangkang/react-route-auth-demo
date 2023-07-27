@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "module": "esnext",
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "esnext"

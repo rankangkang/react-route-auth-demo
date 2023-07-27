@@ -1,24 +1,10 @@
+import React from 'react'
 import { createRoot } from 'react-dom/client'
-import store from '@/store'
-import '@/global.less'
+import store from '@/redux'
 import { Provider } from 'react-redux'
-import React, { FC, useMemo } from 'react'
-import { BrowserRouter, useRoutes } from 'react-router-dom'
-import routes from '@/routes/config'
-import { RouterAuth, screenRoutesByRole } from '@/routes/index'
-import { cloneDeep } from 'lodash'
-
-const App: FC = () => {
-  const { role } = store.getState().user
-
-  console.log('当前用户角色', role)
-  const curRoutes = useMemo(() => {
-    return screenRoutesByRole(cloneDeep(routes))
-  }, [role])
-  const Element = useRoutes(curRoutes)
-
-  return <RouterAuth>{Element}</RouterAuth>
-}
+import { BrowserRouter } from 'react-router-dom'
+import View from './views'
+import '@/global.less'
 
 export const root = document.getElementById('app')
 
@@ -27,8 +13,8 @@ root &&
     <React.StrictMode>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <View />
         </BrowserRouter>
       </Provider>
-    </React.StrictMode>
+    </React.StrictMode>,
   )

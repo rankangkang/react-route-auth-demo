@@ -5,14 +5,14 @@ import { getInvoices } from './data'
 const UserItem: FC = () => {
   const invoices = getInvoices()
   const navigate = useNavigate()
-  const { userId = null } = useParams()
+  const { uid = null } = useParams()
 
   useEffect(() => {
-    if (!invoices.some((inv) => inv.number === Number(userId))) {
+    if (!invoices.some((inv) => inv.number === Number(uid))) {
       navigate('/404', { replace: true })
     }
   }, [])
-  return <div style={{ border: '1px solid' }}>「{userId}」</div>
+  return <div style={{ border: '1px solid' }}>「{uid}」</div>
 }
 
 export default UserItem

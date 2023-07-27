@@ -7,23 +7,30 @@ import LodashWebpackPlugin from 'lodash-webpack-plugin'
 const commonConfig: Configuration = {
   // 入口
   entry: {
-    app: resolve(__dirname, '../src', 'app')
+    app: resolve(__dirname, '../src', 'app'),
   },
   // 输出
   output: {
     filename: '[name].[chunkhash].js',
     path: resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, '../src'),
-      '#': resolve(__dirname, '../config')
+      '#': resolve(__dirname, '../config'),
     },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css'],
   },
   module: {
     rules: [
+      {
+        test: /\.(js|jsx|tsx?|jsx?)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.(le|c)ss$/i,
         include: /node_modules/,
@@ -32,34 +39,27 @@ const commonConfig: Configuration = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(tsx?|jsx?)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: '[file]'
-        }
-      }
-    ]
+          filename: '[file]',
+        },
+      },
+    ],
   },
   plugins: [
     new ProgressPlugin(),
@@ -67,8 +67,8 @@ const commonConfig: Configuration = {
     // 打包之前清理dist
     new CleanWebpackPlugin(),
     // 从模板自动生成html
-    new HtmlWebpackPlugin({ template: 'index.html' })
-  ]
+    new HtmlWebpackPlugin({ template: 'index.html' }),
+  ],
 }
 
 export default commonConfig

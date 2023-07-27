@@ -2,5 +2,6 @@
   "eslint.alwaysShowStatus": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  }
+  },
+  "liveServer.settings.multiRootWorkspaceName": "react-route-auth-demo"
 }

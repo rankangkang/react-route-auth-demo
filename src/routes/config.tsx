@@ -1,8 +1,8 @@
 import { lazy } from 'react'
-import { USER_ROLE_ENUM } from '@/constants/user'
+import { UserRole } from '@/constants/user'
 import { RouteProps } from '@/types/routes'
 import { Navigate, Outlet } from 'react-router-dom'
-import { lazyLoad } from './index'
+import { lazyLoad } from '@/components'
 
 const routes: RouteProps[] = [
   {
@@ -12,50 +12,43 @@ const routes: RouteProps[] = [
       { index: true, element: <Navigate replace to='/welcome' /> },
       {
         path: 'welcome',
-        element: lazyLoad(lazy(() => import('@/views/welcome')))
+        element: lazyLoad(lazy(() => import('@/views/welcome'))),
       },
       {
         path: 'login',
-        element: lazyLoad(lazy(() => import('@/views/login')))
+        element: lazyLoad(lazy(() => import('@/views/login'))),
       },
       {
-        path: 'key-test',
-        element: lazyLoad(lazy(() => import('@/views/keyTest')))
-      },
-      {
-        path: 'min-heap',
-        element: lazyLoad(lazy(() => import('@/views/minHeap')))
-      },
-      {
-        path: 'immer',
-        element: lazyLoad(lazy(() => import('@/views/immer')))
-      },
-      {
-        path: 'settings',
+        path: 'setting',
         meta: {
           auth: true,
-          roles: [USER_ROLE_ENUM.ADMIN, USER_ROLE_ENUM.GUEST]
+          roles: [UserRole.ADMIN],
         },
-        element: lazyLoad(lazy(() => import('@/views/settings')))
+        element: lazyLoad(lazy(() => import('@/views/settings'))),
       },
       {
-        path: 'user-center',
-        element: lazyLoad(lazy(() => import('@/views/userCenter'))),
+        path: 'user',
+        element: lazyLoad(lazy(() => import('@/views/user'))),
         meta: {
           auth: true,
-          unRoles: [USER_ROLE_ENUM.GUEST]
+          unRoles: [UserRole.GUEST],
         },
-        children: [
-          { index: true, element: 'select a user' },
-          {
-            path: ':userId',
-            element: lazyLoad(lazy(() => import('@/views/userCenter/userItem')))
-          }
-        ]
-      }
-    ]
+      },
+      {
+        path: 'market',
+        element: lazyLoad(lazy(() => import('@/views/market'))),
+        meta: {
+          // 需要登录
+          auth: true,
+        },
+      },
+      {
+        path: '403',
+        element: lazyLoad(lazy(() => import('@/views/403'))),
+      },
+    ],
   },
-  { path: '*', element: lazyLoad(lazy(() => import('@/views/404'))) }
+  { path: '*', element: lazyLoad(lazy(() => import('@/views/404'))) },
 ]
 
 export default routes

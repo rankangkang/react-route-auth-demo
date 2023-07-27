@@ -10,11 +10,11 @@ const devConfig: Configuration & { devServer: { [key: string]: any } } = {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
-    static: resolve(__dirname, '../dist'),
+    static: resolve(__dirname, '..'),
     compress: true,
     hot: true,
     historyApiFallback: true,
-    port: 8080
+    port: 8080,
   },
   module: {
     rules: [
@@ -29,31 +29,31 @@ const devConfig: Configuration & { devServer: { [key: string]: any } } = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: '[path][name]__[local]'
-              }
-            }
+                localIdentName: '[path][name]__[local]',
+              },
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: ['postcss-preset-env']
-              }
-            }
+                plugins: ['postcss-preset-env'],
+              },
+            },
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
-      }
-    ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
-  plugins: [new HotModuleReplacementPlugin()]
+  plugins: [new HotModuleReplacementPlugin()],
 }
 
 export default merge<Configuration>(commonConfig, devConfig)
