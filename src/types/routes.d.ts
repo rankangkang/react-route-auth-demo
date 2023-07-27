@@ -2,6 +2,7 @@ import type { IndexRouteObject, NonIndexRouteObject } from 'react-router-dom'
 import { UserRole } from '@/constants/user'
 
 interface CustomRouteFields {
+  name?: string
   meta?: {
     auth?: boolean
     // roles和unRoles冲突的时候，冲突的部分以unRoles为准

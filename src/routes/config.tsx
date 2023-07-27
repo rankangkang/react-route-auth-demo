@@ -43,6 +43,28 @@ const routes: RouteProps[] = [
         },
       },
       {
+        path: 'market/:id',
+        name: 'market',
+        meta: {
+          // 需要登录
+          auth: true,
+        },
+        children: [
+          {
+            index: true,
+            element: <Navigate to='info' />,
+          },
+          {
+            path: 'info',
+            element: lazyLoad(lazy(() => import('@/views/market/views/itemInfo'))),
+          },
+          {
+            path: 'setting',
+            element: lazyLoad(lazy(() => import('@/views/market/views/itemSetting'))),
+          },
+        ],
+      },
+      {
         path: '403',
         element: lazyLoad(lazy(() => import('@/views/403'))),
       },
